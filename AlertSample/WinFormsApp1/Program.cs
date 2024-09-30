@@ -12,7 +12,16 @@ namespace WarningApplication
 
         private void ShowWarningButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ç±ÇÍÇÕåxçêÉÅÉbÉZÅ[ÉWÇ≈Ç∑!", "åxçê", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            ShowWarning();
+        }
+
+        private void ShowWarning()
+        {
+            DialogResult result = MessageBox.Show("Ç§Ç–ÇÂÅ`", "åxçê", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (result == DialogResult.OK)
+            {
+                ShowWarning();
+            }
         }
 
         private void InitializeComponent()
