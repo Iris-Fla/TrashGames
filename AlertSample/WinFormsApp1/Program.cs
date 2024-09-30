@@ -23,7 +23,7 @@ namespace WarningApplication
                 ShowWarning();
             }
         }
-
+        
         private void InitializeComponent()
         {
             this.ShowWarningButton = new Button();
