@@ -91,7 +91,7 @@ namespace WarningApplication
             // ウィンドウを動かすためのタイマーを設定
             Timer moveTimer = new()
             {
-                Interval = 50 // 50ミリ秒ごとに移動 (適宜調整してください)
+                Interval = 10 // 50ミリ秒ごとに移動 (適宜調整してください)
             };
             moveTimer.Tick += (s, e) => MoveWarningWindow(customMsgBox);
             moveTimer.Start();
@@ -105,11 +105,11 @@ namespace WarningApplication
         private void MoveWarningWindow(Form warningWindow)
         {
             Rectangle workingArea = GetWorkingArea();
-            int speed = 50; // 移動速度 (適宜調整してください)
+            int speed = 5; // 移動速度 (適宜調整してください)
 
             // 新しい位置を計算
-            int newX = warningWindow.Location.X + random.Next(-speed, speed + 1);
-            int newY = warningWindow.Location.Y + random.Next(-speed, speed + 1);
+            int newX = warningWindow.Location.X + speed;
+            int newY = warningWindow.Location.Y + speed;
 
             // 画面の端に到達したら反対側に移動
             if (newX < workingArea.Left) newX = workingArea.Right - warningWindow.Width;
@@ -117,7 +117,7 @@ namespace WarningApplication
             if (newY < workingArea.Top) newY = workingArea.Bottom - warningWindow.Height;
             if (newY > workingArea.Bottom - warningWindow.Height) newY = workingArea.Top;
 
-            warningWindow.Location = new Point(newX, newY);
+            warningWindow.Location = new Point(newX,newY);
         }
 
         private void InitializeComponent()
@@ -142,11 +142,11 @@ namespace WarningApplication
         {
             Timer zousyoku = new()
             {
-                Interval = 2000
+                Interval = 500
             };
             zousyoku.Tick += (s, e) =>
             {
-                CreateWarningWindow();
+                ShowRandomPositionWarning(1);
             };
             zousyoku.Start();
         }
