@@ -7,7 +7,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace WarningApplication
 {
-    public partial class MainForm : Form
+    public partial class  : Form
     {
         private Random random = new Random();
         private List<Form> activeWarnings = new List<Form>();
@@ -45,29 +45,29 @@ namespace WarningApplication
         {
             Rectangle workingArea = GetWorkingArea();
 
-            // ƒ‰ƒ“ƒ_ƒ€‚ÈˆÊ’u‚ğŒvZ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ÈˆÊ’uï¿½ï¿½ï¿½vï¿½Z
             int newX = random.Next(workingArea.Left, workingArea.Right - 300);
             int newY = random.Next(workingArea.Top, workingArea.Bottom - 150);
 
             Color randomColor = warningColors[random.Next(warningColors.Length)];
 
-            // ƒJƒXƒ^ƒ€ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ğì¬
+            // ï¿½Jï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½{ï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ì¬
             Form customMsgBox = new Form
             {
                 StartPosition = FormStartPosition.Manual,
                 Location = new Point(newX, newY),
                 FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = "Œx",
+                Text = "ï¿½xï¿½ï¿½",
                 Size = new Size(300, 150),
                 ControlBox = false,
-                TopMost = false, // í‚ÉÅ‘O–Ê‚É•\¦
-                BackColor = randomColor // ”wŒiF‚ğİ’è
+                TopMost = false, // ï¿½ï¿½ÉÅ‘Oï¿½Ê‚É•\ï¿½ï¿½
+                BackColor = randomColor // ï¿½wï¿½iï¿½Fï¿½ï¿½İ’ï¿½
 
             };
 
             Label label = new Label
             {
-                Text = "‚¤‚Ğ‚å`",
+                Text = "ï¿½ï¿½ï¿½Ğ‚ï¿½`",
                 AutoSize = true,
                 Location = new Point(20, 20)
             };
@@ -88,10 +88,10 @@ namespace WarningApplication
 
             customMsgBox.FormClosed += (s, e) => activeWarnings.Remove(customMsgBox);
 
-            // ƒEƒBƒ“ƒhƒE‚ğ“®‚©‚·‚½‚ß‚Ìƒ^ƒCƒ}[‚ğİ’è
+            // ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½ğ“®‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚Ìƒ^ï¿½Cï¿½}ï¿½[ï¿½ï¿½İ’ï¿½
             Timer moveTimer = new()
             {
-                Interval = 10 // 50ƒ~ƒŠ•b‚²‚Æ‚ÉˆÚ“® (“K‹X’²®‚µ‚Ä‚­‚¾‚³‚¢)
+                Interval = 10 // 50ï¿½~ï¿½ï¿½ï¿½bï¿½ï¿½ï¿½Æ‚ÉˆÚ“ï¿½ (ï¿½Kï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             };
             moveTimer.Tick += (s, e) => MoveWarningWindow(customMsgBox);
             moveTimer.Start();
@@ -99,19 +99,19 @@ namespace WarningApplication
             activeWarnings.Add(customMsgBox);
             customMsgBox.Show();
 
-            MessageBeep(0x00000030); // Œx‰¹‚ğ–Â‚ç‚·
+            MessageBeep(0x00000030); // ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ç‚·
         }
 
         private void MoveWarningWindow(Form warningWindow)
         {
             Rectangle workingArea = GetWorkingArea();
-            int speed = 5; // ˆÚ“®‘¬“x (“K‹X’²®‚µ‚Ä‚­‚¾‚³‚¢)
+            int speed = 5; // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½x (ï¿½Kï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 
-            // V‚µ‚¢ˆÊ’u‚ğŒvZ
+            // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½ï¿½ï¿½vï¿½Z
             int newX = warningWindow.Location.X + speed;
             int newY = warningWindow.Location.Y + speed;
 
-            // ‰æ–Ê‚Ì’[‚É“’B‚µ‚½‚ç”½‘Î‘¤‚ÉˆÚ“®
+            // ï¿½ï¿½Ê‚Ì’[ï¿½É“ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ç”½ï¿½Î‘ï¿½ï¿½ÉˆÚ“ï¿½
             if (newX < workingArea.Left) newX = workingArea.Right - warningWindow.Width;
             if (newX > workingArea.Right - warningWindow.Width) newX = workingArea.Left;
             if (newY < workingArea.Top) newY = workingArea.Bottom - warningWindow.Height;
@@ -128,13 +128,13 @@ namespace WarningApplication
             this.ShowWarningButton.Location = new System.Drawing.Point(50, 50);
             this.ShowWarningButton.Name = "ShowWarningButton";
             this.ShowWarningButton.Size = new System.Drawing.Size(200, 30);
-            this.ShowWarningButton.Text = "Œx‚ğ•\¦";
+            this.ShowWarningButton.Text = "ï¿½xï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½";
             this.ShowWarningButton.Click += new EventHandler(ShowWarningButton_Click);
             // MainForm
             this.ClientSize = new Size(300, 150);
             this.Controls.Add(this.ShowWarningButton);
             this.Name = "MainForm";
-            this.Text = "ŒxƒAƒvƒŠƒP[ƒVƒ‡ƒ“";
+            this.Text = "ï¿½xï¿½ï¿½ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½";
             this.ResumeLayout(false);
         }
 
@@ -155,7 +155,7 @@ namespace WarningApplication
         {
             if (Screen.PrimaryScreen == null)
             {
-                return new Rectangle(0, 0, 1024, 768); // ƒfƒtƒHƒ‹ƒg‚Ì‰ğ‘œ“x
+                return new Rectangle(0, 0, 1024, 768); // ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ì‰ğ‘œ“x
             }
             return Screen.PrimaryScreen.WorkingArea;
         }
